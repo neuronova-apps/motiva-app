@@ -4,6 +4,23 @@
 
 Motiva separa la experiencia pública del trabajo editorial interno. La interfaz debe mantenerse sencilla aunque el banco maestro contenga una estructura compleja de clasificación y revisión.
 
+## Estructura actual
+
+La versión web se organiza en archivos con responsabilidades diferenciadas:
+
+- `index.html`: estructura semántica, contenido y carga de recursos de la portada;
+- `styles.css`: estilos generales, componentes de contenido y responsive;
+- `hero-orbit.css`: estilos exclusivos del sistema orbital del hero;
+- `script.js`: navegación, frase diaria, pausa reflexiva, categorías, necesidades y explorador de frases;
+- `privacy/index.html`: política pública de privacidad;
+- `privacy/styles.css`: estilos exclusivos de la política de privacidad;
+- `sitemap.xml`: URLs públicas indexables;
+- `.nojekyll`: publicación estática directa mediante GitHub Pages.
+
+La versión pública se publica desde `main` en `https://neuronova-apps.github.io/motiva-app/`.
+
+El banco maestro y su proceso editorial se mantienen conceptualmente separados de esta capa de presentación. Esta depuración no altera las reglas de revisión, derechos, sensibilidad ni aprobación editorial del contenido.
+
 ## Componentes actuales
 
 La versión web incorpora:
