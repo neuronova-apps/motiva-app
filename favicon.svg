@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Motiva">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f8f8f3"/>
+      <stop offset="100%" stop-color="#eef3ed"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="96" fill="url(#bg)"/>
+  <rect x="14" y="14" width="484" height="484" rx="84" fill="none" stroke="#7fa493" stroke-width="12"/>
+  <path d="M120 292c-30 0-52-24-52-57 0-57 39-97 98-97v52c-29 0-44 16-44 39h60v137h-62v-74Zm204 0c-30 0-52-24-52-57 0-57 39-97 98-97v52c-29 0-44 16-44 39h60v137h-62v-74Z" fill="#5e8676"/>
+</svg>
