@@ -159,6 +159,25 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=20260815-2"></script>
+  <script>
+    (() => {
+      const menu = document.querySelector('.site-header .main-nav');
+      const button = document.querySelector('.site-header .menu-button');
+      if (!menu || !button) return;
+
+      const forceClosed = () => {
+        menu.classList.remove('open');
+        button.setAttribute('aria-expanded', 'false');
+        button.setAttribute('aria-label', 'Abrir menú de navegación');
+      };
+
+      forceClosed();
+      window.addEventListener('pageshow', forceClosed);
+      window.addEventListener('resize', () => {
+        if (window.innerWidth <= 900) forceClosed();
+      });
+    })();
+  </script>
 </body>
 </html>
