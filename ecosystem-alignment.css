@@ -6,38 +6,59 @@
 .main-nav{gap:5px}
 .main-nav a{padding:8px 12px;font-size:.92rem}
 
-.hero{
+body .hero{
   min-height:auto;
   display:grid;
   align-items:start;
   padding:24px 0 28px
 }
-.hero-grid{
+body .hero .hero-grid{
   display:grid;
   grid-template-columns:minmax(0,1.08fr) minmax(330px,.92fr);
   gap:clamp(30px,5vw,64px);
   align-items:center
 }
-.hero-copy{max-width:720px}
-.eyebrow{margin-bottom:10px;font-size:.76rem;letter-spacing:.145em}
-h1{
+body .hero .hero-copy{max-width:720px}
+body .hero .eyebrow{margin-bottom:10px;font-size:.76rem;letter-spacing:.145em}
+body .hero h1{
   max-width:720px;
   margin-bottom:15px;
   font-size:clamp(2.15rem,4.25vw,4rem);
   line-height:1.01;
   letter-spacing:-.04em
 }
-.lead{
+body .hero .lead{
   max-width:700px;
   font-size:clamp(.94rem,1.3vw,1.05rem);
   line-height:1.55
 }
-.hero-actions{margin-top:21px}
-.hero .button{min-height:46px;padding:0 19px;border-radius:14px}
-.hero-signals{margin-top:26px;gap:8px}
-.hero-signals span{padding:7px 10px;font-size:.76rem}
+body .hero .hero-actions{margin-top:21px}
+body .hero .button{min-height:46px;padding:0 19px;border-radius:14px}
+body .hero .hero-signals{margin-top:26px;gap:8px}
+body .hero .hero-signals span{padding:7px 10px;font-size:.76rem}
 
-.hero-visual{width:min(100%,430px);justify-self:end}
+body .hero .hero-visual{
+  width:min(100%,430px);
+  justify-self:end
+}
+body .hero .orbit-a{
+  width:332px;
+  height:332px;
+  margin:-166px 0 0 -166px
+}
+body .hero .orbit-b{
+  width:214px;
+  height:214px;
+  margin:-107px 0 0 -107px
+}
+body .hero .breath-core{
+  width:107px;
+  height:107px;
+  border-radius:28px
+}
+body .hero .breath-core strong{font-size:1.28rem}
+body .hero .breath-core small{font-size:.46rem}
+body .hero .breath-core>span{top:4px;left:12px;font-size:2rem}
 
 .section{padding:72px 0}
 .section-heading{
@@ -48,14 +69,17 @@ h1{
 }
 
 @media(max-width:900px){
-  .hero-grid{grid-template-columns:1fr}
-  .hero-visual{width:min(82vw,390px);justify-self:center}
+  body .hero .hero-grid{grid-template-columns:1fr}
+  body .hero .hero-visual{width:min(82vw,390px);justify-self:center}
 }
 
 @media(max-width:700px){
   .container{width:min(calc(100% - 28px),1180px)}
   .header-inner{min-height:62px}
-  .hero{padding:20px 0 32px}
-  h1{font-size:clamp(1.9rem,9vw,3.1rem);line-height:1.03}
+  body .hero{padding:20px 0 32px}
+  body .hero h1{font-size:clamp(1.9rem,9vw,3.1rem);line-height:1.03}
+  body .hero .orbit-a{width:286px;height:286px;margin:-143px 0 0 -143px}
+  body .hero .orbit-b{width:186px;height:186px;margin:-93px 0 0 -93px}
+  body .hero .breath-core{width:96px;height:96px;border-radius:25px}
   .section{padding:58px 0}
 }
