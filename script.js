@@ -40,44 +40,16 @@ if (reduceMotion || !('IntersectionObserver' in window)) {
 }
 
 const categories = [
-  'Filosofía',
-  'Fe y espiritualidad',
-  'Superación',
-  'Motivación',
-  'Momentos difíciles',
-  'Amor y vínculos',
-  'Familia',
-  'Amistad',
-  'Autoconocimiento',
-  'Metas y logros',
-  'Sabiduría y aprendizaje',
-  'Paz y bienestar',
-  'Gratitud',
-  'Esperanza',
-  'Calma',
-  'Reflexión',
-  'Humor e ingenio',
-  'Literatura y autores',
-  'Astrología'
+  'Filosofía','Fe y espiritualidad','Superación','Motivación','Momentos difíciles',
+  'Amor y vínculos','Familia','Amistad','Autoconocimiento','Metas y logros',
+  'Sabiduría y aprendizaje','Paz y bienestar','Gratitud','Esperanza','Calma',
+  'Reflexión','Humor e ingenio','Literatura y autores','Astrología'
 ];
 
 const needs = [
-  'Calma',
-  'Esperanza',
-  'Seguir adelante',
-  'Reflexionar',
-  'Enfocarme',
-  'Agradecer',
-  'Comprenderme',
-  'Tomar decisión',
-  'Aprender',
-  'Recuperar confianza',
-  'Conectar',
-  'Aligerar',
-  'Impulso',
-  'Aceptar cambios',
-  'Inspiración',
-  'Asumir responsabilidad'
+  'Calma','Esperanza','Seguir adelante','Reflexionar','Enfocarme','Agradecer',
+  'Comprenderme','Tomar decisión','Aprender','Recuperar confianza','Conectar',
+  'Aligerar','Impulso','Aceptar cambios','Inspiración','Asumir responsabilidad'
 ];
 
 const quotes = [
@@ -115,154 +87,145 @@ function dayIndex(length) {
   return Math.abs(hash) % length;
 }
 
-function randomFrom(list) {
-  if (!list.length) return null;
-  return list[Math.floor(Math.random() * list.length)];
+function randomFrom(list, excludeId = '') {
+  const pool = excludeId && list.length > 1 ? list.filter(item => item.id !== excludeId) : list;
+  return pool.length ? pool[Math.floor(Math.random() * pool.length)] : null;
 }
 
-function quotesForCategory(category) { return quotes.filter(quote => quote.categories.includes(category)); }
-function quotesForNeed(need) { return quotes.filter(quote => quote.need === need || quote.categories.includes(need)); }
-function attribution(quote) { if (!quote) return ''; return quote.author === 'Motiva' ? quote.source : `${quote.author} · ${quote.source}`; }
+function quotesForCategory(category) {
+  return category && category !== 'Todas' ? quotes.filter(quote => quote.categories.includes(category)) : quotes;
+}
 
-const dailyQuote = document.querySelector('#dailyQuote');
-const dailyCategory = document.querySelector('#dailyCategory');
-const dailyAuthor = document.querySelector('#dailyAuthor');
-const dailySource = document.querySelector('#dailySource');
+function quotesForNeed(need) {
+  return quotes.filter(quote => quote.need === need || quote.categories.includes(need));
+}
+
+function attribution(quote) {
+  return quote.author === 'Motiva' ? quote.source : `${quote.author} · ${quote.source}`;
+}
+
 const dailyDate = document.querySelector('#dailyDate');
-const todayQuote = quotes[dayIndex(quotes.length)];
+const dailyCategory = document.querySelector('#dailyCategory');
+const dailyQuote = document.querySelector('#dailyQuoteTitle');
+const dailyAuthor = document.querySelector('#dailyAuthor');
+const newDailyQuote = document.querySelector('#newDailyQuote');
+let currentDailyQuote = quotes[dayIndex(quotes.length)];
 
-if (dailyQuote && todayQuote) {
-  dailyQuote.textContent = todayQuote.text;
-  dailyCategory.textContent = todayQuote.categories[0];
-  dailyAuthor.textContent = todayQuote.author;
-  dailySource.textContent = todayQuote.source;
-  dailyDate.textContent = new Intl.DateTimeFormat('es-PE', {weekday:'long', day:'numeric', month:'long'}).format(new Date());
+function renderDailyQuote(quote) {
+  if (!quote) return;
+  currentDailyQuote = quote;
+  if (dailyDate) dailyDate.textContent = new Intl.DateTimeFormat('es-PE', {weekday:'long', day:'numeric', month:'long'}).format(new Date());
+  if (dailyCategory) dailyCategory.textContent = quote.categories[0];
+  if (dailyQuote) dailyQuote.textContent = quote.text;
+  if (dailyAuthor) dailyAuthor.textContent = quote.author === 'Motiva' ? 'Motiva' : quote.author;
 }
 
-const reflectButton = document.querySelector('#reflectButton');
-const reflectionPrompt = document.querySelector('#reflectionPrompt');
-const reflectionText = document.querySelector('#reflectionText');
-let reflectionTimer = null;
+renderDailyQuote(currentDailyQuote);
+newDailyQuote?.addEventListener('click', () => renderDailyQuote(randomFrom(quotes, currentDailyQuote?.id)));
 
-reflectButton?.addEventListener('click', () => {
-  const open = reflectionPrompt.hidden;
-  reflectionPrompt.hidden = !open;
-  reflectButton.setAttribute('aria-expanded', String(open));
-  clearInterval(reflectionTimer);
-  if (!open) return;
-  let seconds = 20;
-  reflectionText.textContent = `Lee la frase una vez más, sin prisa. Quedan ${seconds} segundos.`;
-  reflectionTimer = setInterval(() => {
-    seconds -= 1;
-    if (seconds > 0) reflectionText.textContent = `Lee la frase una vez más, sin prisa. Quedan ${seconds} segundos.`;
-    else {
-      clearInterval(reflectionTimer);
-      reflectionText.textContent = 'Pausa completa. ¿Qué palabra o idea te gustaría conservar hoy?';
-    }
-  }, 1000);
-});
+const needGrid = document.querySelector('#needGrid');
+const categoryGrid = document.querySelector('#categoryGrid');
+const categoryFilter = document.querySelector('#categoryFilter');
+const randomQuoteButton = document.querySelector('#randomQuote');
+const quoteList = document.querySelector('#quoteList');
+const exploreToolbar = document.querySelector('.explore-toolbar');
 
-const needsGrid = document.querySelector('#needsGrid');
-const momentNeed = document.querySelector('#momentNeed');
-const momentQuote = document.querySelector('#momentQuote');
-const momentAttribution = document.querySelector('#momentAttribution');
-const anotherMoment = document.querySelector('#anotherMoment');
-let currentNeed = 'Inspiración';
+needGrid?.classList.add('needs-grid');
+quoteList?.classList.add('category-grid');
+exploreToolbar?.classList.add('explorer-copy');
+quoteList?.setAttribute('aria-live', 'polite');
 
-function renderNeedQuote(need, forceDifferent = false) {
-  currentNeed = need;
-  const pool = quotesForNeed(need);
-  const available = forceDifferent && pool.length > 1 ? pool.filter(item => item.text !== momentQuote.textContent) : pool;
-  const quote = randomFrom(available.length ? available : pool);
-  momentNeed.textContent = need;
-  if (quote) {
-    momentQuote.textContent = quote.text;
-    momentAttribution.textContent = attribution(quote);
-  } else {
-    momentQuote.textContent = 'Esta categoría forma parte del banco maestro y su colección pública se incorporará progresivamente.';
-    momentAttribution.textContent = 'Motiva · contenido en preparación';
+function renderQuoteList(list, label = 'Frases disponibles') {
+  if (!quoteList) return;
+  quoteList.setAttribute('aria-label', label);
+  quoteList.replaceChildren();
+
+  if (!list.length) {
+    const empty = document.createElement('p');
+    empty.textContent = 'Esta colección todavía no tiene frases públicas en la demo.';
+    quoteList.appendChild(empty);
+    return;
   }
-  document.querySelectorAll('.need-chip').forEach(button => {
-    const active = button.dataset.need === need;
-    button.classList.toggle('active', active);
-    button.setAttribute('aria-pressed', String(active));
+
+  list.forEach((quote, index) => {
+    const card = document.createElement('article');
+    card.className = 'category-card';
+    card.style.setProperty('--tone', categoryTones[index % categoryTones.length]);
+
+    const meta = document.createElement('span');
+    meta.textContent = quote.categories[0];
+
+    const text = document.createElement('strong');
+    text.textContent = `“${quote.text}”`;
+
+    const source = document.createElement('p');
+    source.textContent = attribution(quote);
+    source.style.margin = '12px 0 0';
+    source.style.color = 'var(--muted)';
+    source.style.fontSize = '.78rem';
+    source.style.lineHeight = '1.45';
+
+    card.append(meta, text, source);
+    quoteList.appendChild(card);
   });
 }
 
-if (needsGrid) {
+if (needGrid) {
+  needGrid.replaceChildren();
   needs.forEach(need => {
     const button = document.createElement('button');
     button.type = 'button';
     button.className = 'need-chip';
+    button.textContent = need;
     button.dataset.need = need;
     button.setAttribute('aria-pressed', 'false');
-    button.textContent = need;
-    button.addEventListener('click', () => renderNeedQuote(need));
-    needsGrid.appendChild(button);
+    button.addEventListener('click', () => {
+      needGrid.querySelectorAll('.need-chip').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+      needGrid.querySelectorAll('.need-chip').forEach(item => item.classList.toggle('active', item === button));
+      renderQuoteList(quotesForNeed(need), `Frases relacionadas con ${need}`);
+      document.querySelector('#explorar')?.scrollIntoView({behavior: reduceMotion ? 'auto' : 'smooth'});
+    });
+    needGrid.appendChild(button);
   });
-  renderNeedQuote('Calma');
 }
 
-anotherMoment?.addEventListener('click', () => renderNeedQuote(currentNeed, true));
-
-const categoryGrid = document.querySelector('#categoryGrid');
-const categorySelect = document.querySelector('#categorySelect');
-
-function chooseCategory(category) {
-  if (categorySelect) categorySelect.value = category;
-  renderGeneratedQuote(category);
-  document.querySelector('#explorar')?.scrollIntoView({behavior: reduceMotion ? 'auto' : 'smooth'});
-}
-
-categories.forEach((category, index) => {
-  if (categorySelect) {
+if (categoryFilter) {
+  categoryFilter.replaceChildren();
+  ['Todas', ...categories].forEach(category => {
     const option = document.createElement('option');
     option.value = category;
     option.textContent = category;
-    categorySelect.appendChild(option);
-  }
-  if (categoryGrid) {
+    categoryFilter.appendChild(option);
+  });
+  categoryFilter.addEventListener('change', () => renderQuoteList(quotesForCategory(categoryFilter.value), `Categoría ${categoryFilter.value}`));
+}
+
+if (categoryGrid) {
+  categoryGrid.replaceChildren();
+  categories.forEach((category, index) => {
     const count = quotesForCategory(category).length;
     const button = document.createElement('button');
     button.type = 'button';
     button.className = 'category-card';
     button.style.setProperty('--tone', categoryTones[index % categoryTones.length]);
-    button.innerHTML = `<span>${String(index + 1).padStart(2,'0')} · ${count ? `${count} en demo` : 'colección en desarrollo'}</span><strong>${category}</strong>`;
     button.setAttribute('aria-label', `Explorar categoría ${category}`);
-    button.addEventListener('click', () => chooseCategory(category));
+    button.innerHTML = `<span>${String(index + 1).padStart(2,'0')} · ${count ? `${count} en demo` : 'colección en desarrollo'}</span><strong>${category}</strong>`;
+    button.addEventListener('click', () => {
+      if (categoryFilter) categoryFilter.value = category;
+      renderQuoteList(quotesForCategory(category), `Categoría ${category}`);
+      document.querySelector('#explorar')?.scrollIntoView({behavior: reduceMotion ? 'auto' : 'smooth'});
+    });
     categoryGrid.appendChild(button);
-  }
-});
-
-const generatedCategory = document.querySelector('#generatedCategory');
-const generatedQuote = document.querySelector('#generatedQuote');
-const generatedAuthor = document.querySelector('#generatedAuthor');
-const generatedSource = document.querySelector('#generatedSource');
-const generateQuote = document.querySelector('#generateQuote');
-const nextGenerated = document.querySelector('#nextGenerated');
-let currentCategory = categories[0];
-
-function renderGeneratedQuote(category = currentCategory, forceDifferent = false) {
-  currentCategory = category;
-  const pool = quotesForCategory(category);
-  const available = forceDifferent && pool.length > 1 ? pool.filter(item => item.text !== generatedQuote.textContent) : pool;
-  const quote = randomFrom(available.length ? available : pool);
-  generatedCategory.textContent = category;
-  if (quote) {
-    generatedQuote.textContent = quote.text;
-    generatedAuthor.textContent = quote.author;
-    generatedSource.textContent = quote.source;
-  } else {
-    generatedQuote.textContent = 'Esta categoría ya existe en el banco maestro. Su colección pública se incorporará en una siguiente etapa.';
-    generatedAuthor.textContent = 'Motiva';
-    generatedSource.textContent = 'Colección en desarrollo';
-  }
+  });
 }
 
-generateQuote?.addEventListener('click', () => renderGeneratedQuote(categorySelect.value));
-nextGenerated?.addEventListener('click', () => renderGeneratedQuote(currentCategory, true));
-categorySelect?.addEventListener('change', () => renderGeneratedQuote(categorySelect.value));
-renderGeneratedQuote('Filosofía');
+randomQuoteButton?.addEventListener('click', () => {
+  const pool = quotesForCategory(categoryFilter?.value || 'Todas');
+  const quote = randomFrom(pool);
+  renderQuoteList(quote ? [quote] : [], 'Frase aleatoria');
+});
+
+renderQuoteList(quotes, 'Colección pública actual de Motiva');
 
 (() => {
   const structuredData = {
@@ -277,7 +240,7 @@ renderGeneratedQuote('Filosofía');
     inLanguage: 'es-PE',
     applicationSuite: 'Neuronova Apps',
     image: 'https://neuronova-apps.github.io/motiva-app/assets/social/motiva-social.png',
-    featureList: ['Frase del día', 'Veintidós frases en la demo', 'Diecinueve categorías', 'Dieciséis necesidades para explorar', 'Explorador de frases', 'Experiencia accesible y responsive'],
+    featureList: ['Frase del día','Veintidós frases en la demo','Diecinueve categorías','Dieciséis necesidades para explorar','Explorador de frases','Experiencia accesible y responsive'],
     isPartOf: {'@id': 'https://neuronova-apps.github.io/#website'}
   };
   if (!document.querySelector('script[data-neuronova-schema="true"]')) {
