@@ -35,40 +35,33 @@ body .hero .lead{
 body .hero .hero-actions{margin-top:21px}
 body .hero .button{min-height:46px;padding:0 19px;border-radius:14px}
 
-/* Panel inferior inspirado en las métricas del portal principal */
+/* Panel de cualidades equivalente al bloque de métricas del portal principal */
 body .hero .hero-signals{
-  width:100%;
+  width:min(100%,620px);
   display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
+  grid-template-columns:repeat(4,1fr);
   gap:0;
   margin-top:26px;
-  padding:13px 15px;
-  border:1px solid rgba(79,117,102,.14);
-  border-radius:18px;
-  background:rgba(255,255,255,.46);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.48)
+  padding:12px 14px;
+  border:1px solid rgba(79,117,102,.18);
+  border-radius:14px;
+  background:rgba(255,255,255,.42);
+  box-shadow:0 8px 24px rgba(79,117,102,.035)
 }
 body .hero .hero-signals span{
-  min-width:0;
-  min-height:42px;
+  min-height:38px;
   display:flex;
   align-items:center;
-  justify-content:flex-start;
-  padding:0 16px;
+  padding:0 14px;
   border:0;
-  border-right:1px solid rgba(79,117,102,.14);
+  border-right:1px solid rgba(79,117,102,.18);
   border-radius:0;
   background:transparent;
-  color:#50675d;
+  color:#65746c;
   font-size:.76rem;
-  font-weight:800;
-  line-height:1.2
+  font-weight:780
 }
-body .hero .hero-signals span:first-child{padding-left:0}
-body .hero .hero-signals span:last-child{
-  padding-right:0;
-  border-right:0
-}
+body .hero .hero-signals span:last-child{border-right:0}
 
 body .hero .hero-visual{
   width:min(100%,430px);
@@ -101,9 +94,65 @@ body .hero .breath-core>span{top:4px;left:12px;font-size:2rem}
   margin-bottom:36px
 }
 
+/* Footer oscuro compartido con QuizBible y MiMomento */
+body .site-footer{
+  padding:0;
+  border-top:1px solid rgba(255,255,255,.08);
+  background:#1c2b27;
+  color:#f5f1e5
+}
+body .site-footer .footer-grid{
+  grid-template-columns:minmax(0,1.35fr) minmax(150px,.65fr) minmax(210px,.8fr);
+  gap:clamp(36px,7vw,88px);
+  padding-block:54px 42px
+}
+body .site-footer .brand,
+body .site-footer .brand strong{color:#f7f3e9}
+body .site-footer .brand-mark{
+  border-color:rgba(214,193,140,.34);
+  background:linear-gradient(145deg,#31443d,#24342f);
+  color:#e3c983;
+  box-shadow:inset 0 0 18px rgba(227,201,131,.05),0 8px 24px rgba(0,0,0,.18)
+}
+body .site-footer .brand-copy small,
+body .site-footer .footer-brand p{color:#b8c5bf}
+body .site-footer .footer-brand p{max-width:390px;margin:18px 0 0;font-size:.9rem;line-height:1.55}
+body .site-footer .footer-column{gap:11px}
+body .site-footer .footer-column h2{
+  margin:0 0 4px;
+  color:#e3c983;
+  font-size:.74rem;
+  font-weight:850;
+  letter-spacing:.12em;
+  text-transform:uppercase
+}
+body .site-footer .footer-column a,
+body .site-footer .footer-column span{
+  color:#b8c5bf;
+  font-size:.88rem;
+  text-decoration:none
+}
+body .site-footer .footer-column a:hover,
+body .site-footer .footer-column a:focus-visible{color:#fff8e5}
+body .site-footer .footer-bottom{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+  margin-top:0;
+  padding-block:18px 20px;
+  border-top:1px solid rgba(255,255,255,.10);
+  color:#93a49d;
+  font-size:.74rem
+}
+body .site-footer .footer-bottom a{color:#b8c5bf;text-decoration:none}
+body .site-footer .footer-bottom a:hover{color:#fff8e5}
+
 @media(max-width:900px){
   body .hero .hero-grid{grid-template-columns:1fr}
   body .hero .hero-visual{width:min(82vw,390px);justify-self:center}
+  body .site-footer .footer-grid{grid-template-columns:1fr 1fr}
+  body .site-footer .footer-brand{grid-column:1/-1}
 }
 
 @media(max-width:700px){
@@ -111,15 +160,15 @@ body .hero .breath-core>span{top:4px;left:12px;font-size:2rem}
   .header-inner{min-height:62px}
   body .hero{padding:20px 0 32px}
   body .hero h1{font-size:clamp(1.9rem,9vw,3.1rem);line-height:1.03}
-  body .hero .hero-signals{grid-template-columns:repeat(2,minmax(0,1fr));padding:10px 12px}
-  body .hero .hero-signals span{padding:10px 12px;border-bottom:1px solid rgba(79,117,102,.12)}
-  body .hero .hero-signals span:nth-child(2){border-right:0}
-  body .hero .hero-signals span:nth-child(3),
-  body .hero .hero-signals span:nth-child(4){border-bottom:0}
-  body .hero .hero-signals span:first-child{padding-left:12px}
-  body .hero .hero-signals span:last-child{padding-right:12px}
   body .hero .orbit-a{width:286px;height:286px;margin:-143px 0 0 -143px}
   body .hero .orbit-b{width:186px;height:186px;margin:-93px 0 0 -93px}
   body .hero .breath-core{width:96px;height:96px;border-radius:25px}
+  body .hero .hero-signals{grid-template-columns:1fr 1fr;padding:10px 12px}
+  body .hero .hero-signals span{padding:8px 12px;border-right:0;border-bottom:1px solid rgba(79,117,102,.16)}
+  body .hero .hero-signals span:nth-last-child(-n+2){border-bottom:0}
+  body .hero .hero-signals span:nth-child(odd){border-right:1px solid rgba(79,117,102,.16)}
   .section{padding:58px 0}
+  body .site-footer .footer-grid{grid-template-columns:1fr;gap:28px;padding-block:42px 32px}
+  body .site-footer .footer-brand{grid-column:auto}
+  body .site-footer .footer-bottom{flex-direction:column;align-items:flex-start;gap:8px}
 }
