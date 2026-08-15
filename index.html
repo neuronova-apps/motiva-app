@@ -29,6 +29,7 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="hero-orbit.css">
   <link rel="stylesheet" href="https://neuronova-apps.github.io/assets/accessibility/accessibility.css">
+  <link rel="stylesheet" href="ecosystem-alignment.css">
   <script src="https://neuronova-apps.github.io/assets/accessibility/accessibility.js" defer></script>
 </head>
 <body>
@@ -70,137 +71,72 @@
             <a class="button primary" href="#hoy">Ver frase del día <span aria-hidden="true">↓</span></a>
             <a class="button secondary" href="#necesitas">¿Qué necesitas hoy?</a>
           </div>
-          <div class="hero-signals" aria-label="Principios de Motiva">
+          <div class="hero-signals" aria-label="Características de Motiva">
             <span>Breve</span><span>Reflexivo</span><span>Curado</span><span>Accesible</span>
           </div>
         </div>
 
-        <div class="hero-visual reveal" aria-hidden="true">
-          <div class="quote-orbit orbit-a">
+        <div class="hero-visual reveal" aria-label="Representación visual del universo Motiva">
+          <div class="quote-orbit orbit-a" aria-hidden="true">
             <span class="m-node node-one"><b>HOY</b></span>
             <span class="m-node node-two"><b>PARA TI</b></span>
             <span class="m-node node-three"><b>EXPLORA</b></span>
             <span class="m-node node-four"><b>PAUSA</b></span>
           </div>
-          <div class="quote-orbit orbit-b">
-            <span class="m-chip chip-one"><b>CALMA</b></span>
-            <span class="m-chip chip-two"><b>REFLEXIÓN</b></span>
-            <span class="m-chip chip-three"><b>ESPERANZA</b></span>
+          <div class="quote-orbit orbit-b" aria-hidden="true">
+            <span class="m-chip chip-one"><b>REFLEXIÓN</b></span>
+            <span class="m-chip chip-two"><b>ESPERANZA</b></span>
+            <span class="m-chip chip-three"><b>CALMA</b></span>
           </div>
-          <div class="breath-core"><span>“</span><strong>Motiva</strong><small>UNA IDEA PARA HOY</small></div>
+          <div class="breath-core" aria-hidden="true"><span>“</span><strong>Motiva</strong><small>UNA IDEA PARA HOY</small></div>
         </div>
       </div>
     </section>
 
     <section id="hoy" class="section daily-section">
       <div class="container">
-        <div class="daily-card reveal">
-          <div class="daily-meta">
-            <div>
-              <p class="eyebrow">Frase del día</p>
-              <p id="dailyDate" class="daily-date">Hoy</p>
-            </div>
-            <span id="dailyCategory" class="category-badge">Reflexión</span>
-          </div>
-
-          <blockquote id="dailyQuote">Cargando frase del día…</blockquote>
-          <div class="daily-source">
-            <div>
-              <strong id="dailyAuthor">Motiva</strong>
-              <span id="dailySource">Colección original de la app</span>
-            </div>
-            <button id="reflectButton" class="icon-button" type="button" aria-expanded="false" aria-controls="reflectionPrompt">Pausa de 20 s</button>
-          </div>
-          <div id="reflectionPrompt" class="reflection-prompt" hidden>
-            <span class="breathing-dot" aria-hidden="true"></span>
-            <p id="reflectionText">Lee la frase una vez más, sin prisa. ¿Qué palabra te gustaría conservar hoy?</p>
-          </div>
-        </div>
+        <article class="daily-card reveal" aria-labelledby="dailyQuoteTitle">
+          <div class="daily-meta"><p class="daily-date" id="dailyDate"></p><span class="category-badge" id="dailyCategory"></span></div>
+          <blockquote id="dailyQuoteTitle"></blockquote>
+          <div class="daily-source"><div><strong id="dailyAuthor"></strong><span>Frase del día</span></div><button class="text-button" id="newDailyQuote" type="button">Otra frase</button></div>
+        </article>
       </div>
     </section>
 
-    <section id="necesitas" class="section needs-section">
+    <section id="necesitas" class="section need-section">
       <div class="container">
-        <div class="section-heading reveal">
-          <div>
-            <p class="eyebrow">Elige desde tu momento</p>
-            <h2>¿Qué necesitas hoy?</h2>
-          </div>
-          <p>En lugar de buscar entre cientos de frases, puedes comenzar por una intención. Motiva utiliza las necesidades asociadas del banco maestro para acercarte un mensaje más pertinente.</p>
-        </div>
-
-        <div id="needsGrid" class="needs-grid reveal" aria-label="Necesidades disponibles"></div>
-
-        <div class="moment-card reveal" aria-live="polite">
-          <div class="moment-top">
-            <span id="momentNeed" class="moment-label">Inspiración</span>
-            <button id="anotherMoment" class="text-button" type="button">Otra frase <span aria-hidden="true">↻</span></button>
-          </div>
-          <blockquote id="momentQuote">Elige una necesidad para encontrar una frase.</blockquote>
-          <p id="momentAttribution"></p>
-        </div>
+        <div class="section-heading reveal"><div><p class="eyebrow">Para ti</p><h2>Elige cómo quieres acompañar este momento.</h2></div><p>Motiva no reemplaza apoyo profesional ni promete cambiar cómo te sientes. Solo ofrece palabras breves que pueden servir como pausa, reflexión o punto de partida.</p></div>
+        <div class="need-grid" id="needGrid"></div>
       </div>
     </section>
 
     <section id="categorias" class="section categories-section">
       <div class="container">
-        <div class="section-heading reveal">
-          <div>
-            <p class="eyebrow">Banco maestro</p>
-            <h2>Un mapa de ideas, no una lista infinita.</h2>
-          </div>
-          <p>Las categorías del banco permiten recorrer Motiva desde distintas perspectivas: crecimiento, vínculos, serenidad, aprendizaje, espiritualidad, humor y más.</p>
-        </div>
-
-        <div id="categoryGrid" class="category-grid reveal"></div>
+        <div class="section-heading reveal"><div><p class="eyebrow">Categorías</p><h2>Explora mensajes según el tono que buscas.</h2></div><p>Las categorías ayudan a ordenar el contenido para encontrar ideas sobre calma, perseverancia, gratitud, autoestima, esperanza y otros temas cotidianos.</p></div>
+        <div class="category-grid" id="categoryGrid"></div>
       </div>
     </section>
 
-    <section id="explorar" class="section explorer-section">
-      <div class="container explorer-grid">
-        <div class="explorer-copy reveal">
-          <p class="eyebrow">Explorar</p>
-          <h2>Una frase, según tu elección.</h2>
-          <p>Selecciona una categoría y Motiva elegirá una frase disponible en esta versión de exhibición. La aplicación completa podrá trabajar con una colección mucho más amplia del banco maestro.</p>
-
-          <label for="categorySelect">Categoría</label>
-          <select id="categorySelect"></select>
-          <button id="generateQuote" class="button primary" type="button">Generar frase <span aria-hidden="true">→</span></button>
-        </div>
-
-        <article class="generated-card reveal" aria-live="polite">
-          <div class="generated-head"><span id="generatedCategory">Motiva</span><span class="quote-symbol" aria-hidden="true">“</span></div>
-          <blockquote id="generatedQuote">Selecciona una categoría para comenzar.</blockquote>
-          <div class="generated-footer">
-            <div><strong id="generatedAuthor">—</strong><span id="generatedSource"></span></div>
-            <button id="nextGenerated" class="text-button" type="button">Cambiar <span aria-hidden="true">↻</span></button>
-          </div>
-        </article>
+    <section id="explorar" class="section explore-section">
+      <div class="container">
+        <div class="section-heading reveal"><div><p class="eyebrow">Explorar</p><h2>Un espacio para recorrer frases sin prisa.</h2></div><p>Puedes cambiar de categoría, solicitar otra frase y guardar localmente tus favoritas cuando esa opción esté disponible en tu navegador.</p></div>
+        <div class="explore-toolbar reveal"><label for="categoryFilter">Categoría</label><select id="categoryFilter"></select><button class="button secondary" id="randomQuote" type="button">Frase aleatoria</button></div>
+        <div class="quote-list" id="quoteList"></div>
       </div>
     </section>
 
-    <section class="section app-section">
-      <div class="container app-panel reveal">
-        <div>
-          <p class="eyebrow">Motiva App</p>
-          <h2>La experiencia completa llegará a la aplicación.</h2>
-          <p>Favoritos, historial, notificaciones, colecciones, personalización y una biblioteca más amplia se reservarán para la app. La web funciona como puerta de entrada y espacio de descubrimiento.</p>
-        </div>
-        <span class="app-status">En desarrollo</span>
-      </div>
+    <section class="section note-section">
+      <div class="container note-panel reveal"><div><p class="eyebrow">Sobre Motiva</p><h2>Una experiencia breve, no una intervención clínica.</h2></div><p>Motiva está pensada como una colección organizada de mensajes para reflexión personal y entretenimiento. Ante malestar emocional persistente, crisis o necesidad de apoyo, corresponde buscar ayuda profesional o servicios de emergencia disponibles en tu localidad.</p></div>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="container footer-grid">
-      <div class="footer-brand">
-        <a class="brand" href="#inicio"><span class="brand-mark" aria-hidden="true">M</span><span class="brand-copy"><strong>Motiva</strong><small>Neuronova Apps</small></span></a>
-        <p>Un proyecto personal de frases breves para la reflexión, la inspiración y la vida cotidiana.</p>
-      </div>
-      <div class="footer-column"><h2>Explorar</h2><a href="#hoy">Frase del día</a><a href="#necesitas">Para ti</a><a href="#categorias">Categorías</a><a href="#explorar">Explorar frases</a></div>
-      <div class="footer-column"><h2>Ecosistema</h2><a href="https://neuronova-apps.github.io/">Neuronova Apps</a><a href="privacy/">Política de privacidad</a><a href="https://github.com/neuronova-apps/motiva-app" target="_blank" rel="noopener noreferrer">GitHub</a><span>Proyecto en desarrollo</span></div>
+      <div class="footer-brand"><a class="brand" href="#inicio"><span class="brand-mark" aria-hidden="true">M</span><span class="brand-copy"><strong>Motiva</strong><small>Neuronova Apps</small></span></a><p>Frases breves para reflexión, calma e inspiración cotidiana.</p></div>
+      <div class="footer-column"><h2>Explorar</h2><a href="#hoy">Hoy</a><a href="#necesitas">Para ti</a><a href="#categorias">Categorías</a><a href="#explorar">Explorar</a></div>
+      <div class="footer-column"><h2>Proyecto</h2><a href="https://neuronova-apps.github.io/">Neuronova Apps</a><a href="privacy/">Política de privacidad</a><a href="https://github.com/neuronova-apps/motiva-app">GitHub</a></div>
     </div>
-    <div class="container footer-bottom"><p>© <span id="year"></span> Motiva · Neuronova Apps</p><p>Reflexión · Accesibilidad · Tecnología cercana</p></div>
+    <div class="container footer-bottom"><p>© <span id="year"></span> Motiva · Neuronova Apps.</p><p>Reflexión · Calma · Inspiración</p></div>
   </footer>
 
   <script src="script.js"></script>
