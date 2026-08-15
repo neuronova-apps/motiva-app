@@ -250,3 +250,7 @@ body .hero .hero-metrics strong{color:var(--text);font-size:1.02rem;line-height:
 body .hero .hero-metrics span{min-height:0;margin-top:4px;padding:0;border:0;color:var(--muted);font-size:.72rem;font-weight:500;line-height:1.35}
 body .hero .hero-metrics span::before{display:none}
 @media(max-width:700px){body .hero .hero-metrics{padding:14px 15px}body .hero .hero-metrics>div{padding-right:10px;margin-right:10px}body .hero .hero-metrics strong{font-size:.96rem}body .hero .hero-metrics span{font-size:.68rem}}
+
+/* Franja inferior definitiva: solo copyright y privacidad */
+body .site-footer .footer-bottom p:last-child{font-size:0}
+body .site-footer .footer-bottom p:last-child a{font-size:.74rem}
