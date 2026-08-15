@@ -30,6 +30,27 @@
   <link rel="stylesheet" href="hero-orbit.css">
   <link rel="stylesheet" href="https://neuronova-apps.github.io/assets/accessibility/accessibility.css">
   <link rel="stylesheet" href="ecosystem-alignment.css">
+  <style>
+    @media (max-width: 900px) {
+      .site-header nav.main-nav[aria-label="Navegación principal"] {
+        display: none !important;
+      }
+      .site-header .menu-button[aria-expanded="true"] + nav.main-nav[aria-label="Navegación principal"] {
+        display: flex !important;
+        position: absolute;
+        top: 62px;
+        left: 14px;
+        right: 14px;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 10px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: var(--ecosystem-menu-bg, rgba(250,250,246,.98));
+        z-index: 120;
+      }
+    }
+  </style>
   <script src="https://neuronova-apps.github.io/assets/accessibility/accessibility.js" defer></script>
 </head>
 <body>
