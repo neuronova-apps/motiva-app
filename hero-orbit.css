@@ -1,3 +1,5 @@
+@import url('ecosystem-alignment.css');
+
 .hero-visual{width:min(100%,510px);aspect-ratio:1;justify-self:end;position:relative;display:grid;place-items:center;isolation:isolate}
 .hero-visual::before{content:"";position:absolute;inset:14%;border-radius:50%;background:radial-gradient(circle,rgba(127,164,147,.18),transparent 64%)}
 .quote-orbit{position:absolute;left:50%;top:50%;border:1px solid rgba(79,117,102,.16);border-radius:50%;transform-origin:center}
