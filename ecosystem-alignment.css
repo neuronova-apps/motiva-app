@@ -1,0 +1,61 @@
+/* Alineación dimensional de Motiva con el portal principal Neuronova Apps */
+.container{width:min(calc(100% - 36px),1180px);margin-inline:auto}
+
+.site-header{min-height:66px}
+.header-inner{min-height:66px}
+.main-nav{gap:5px}
+.main-nav a{padding:8px 12px;font-size:.92rem}
+
+.hero{
+  min-height:auto;
+  display:grid;
+  align-items:start;
+  padding:24px 0 28px
+}
+.hero-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.08fr) minmax(330px,.92fr);
+  gap:clamp(30px,5vw,64px);
+  align-items:center
+}
+.hero-copy{max-width:720px}
+.eyebrow{margin-bottom:10px;font-size:.76rem;letter-spacing:.145em}
+h1{
+  max-width:720px;
+  margin-bottom:15px;
+  font-size:clamp(2.15rem,4.25vw,4rem);
+  line-height:1.01;
+  letter-spacing:-.04em
+}
+.lead{
+  max-width:700px;
+  font-size:clamp(.94rem,1.3vw,1.05rem);
+  line-height:1.55
+}
+.hero-actions{margin-top:21px}
+.hero .button{min-height:46px;padding:0 19px;border-radius:14px}
+.hero-signals{margin-top:26px;gap:8px}
+.hero-signals span{padding:7px 10px;font-size:.76rem}
+
+.hero-visual{width:min(100%,430px);justify-self:end}
+
+.section{padding:72px 0}
+.section-heading{
+  grid-template-columns:1fr .8fr;
+  gap:clamp(32px,6vw,72px);
+  align-items:end;
+  margin-bottom:36px
+}
+
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr}
+  .hero-visual{width:min(82vw,390px);justify-self:center}
+}
+
+@media(max-width:700px){
+  .container{width:min(calc(100% - 28px),1180px)}
+  .header-inner{min-height:62px}
+  .hero{padding:20px 0 32px}
+  h1{font-size:clamp(1.9rem,9vw,3.1rem);line-height:1.03}
+  .section{padding:58px 0}
+}
