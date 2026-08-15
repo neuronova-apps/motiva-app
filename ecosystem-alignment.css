@@ -34,8 +34,41 @@ body .hero .lead{
 }
 body .hero .hero-actions{margin-top:21px}
 body .hero .button{min-height:46px;padding:0 19px;border-radius:14px}
-body .hero .hero-signals{margin-top:26px;gap:8px}
-body .hero .hero-signals span{padding:7px 10px;font-size:.76rem}
+
+/* Panel inferior inspirado en las métricas del portal principal */
+body .hero .hero-signals{
+  width:100%;
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:0;
+  margin-top:26px;
+  padding:13px 15px;
+  border:1px solid rgba(79,117,102,.14);
+  border-radius:18px;
+  background:rgba(255,255,255,.46);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.48)
+}
+body .hero .hero-signals span{
+  min-width:0;
+  min-height:42px;
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  padding:0 16px;
+  border:0;
+  border-right:1px solid rgba(79,117,102,.14);
+  border-radius:0;
+  background:transparent;
+  color:#50675d;
+  font-size:.76rem;
+  font-weight:800;
+  line-height:1.2
+}
+body .hero .hero-signals span:first-child{padding-left:0}
+body .hero .hero-signals span:last-child{
+  padding-right:0;
+  border-right:0
+}
 
 body .hero .hero-visual{
   width:min(100%,430px);
@@ -78,6 +111,13 @@ body .hero .breath-core>span{top:4px;left:12px;font-size:2rem}
   .header-inner{min-height:62px}
   body .hero{padding:20px 0 32px}
   body .hero h1{font-size:clamp(1.9rem,9vw,3.1rem);line-height:1.03}
+  body .hero .hero-signals{grid-template-columns:repeat(2,minmax(0,1fr));padding:10px 12px}
+  body .hero .hero-signals span{padding:10px 12px;border-bottom:1px solid rgba(79,117,102,.12)}
+  body .hero .hero-signals span:nth-child(2){border-right:0}
+  body .hero .hero-signals span:nth-child(3),
+  body .hero .hero-signals span:nth-child(4){border-bottom:0}
+  body .hero .hero-signals span:first-child{padding-left:12px}
+  body .hero .hero-signals span:last-child{padding-right:12px}
   body .hero .orbit-a{width:286px;height:286px;margin:-143px 0 0 -143px}
   body .hero .orbit-b{width:186px;height:186px;margin:-93px 0 0 -93px}
   body .hero .breath-core{width:96px;height:96px;border-radius:25px}
