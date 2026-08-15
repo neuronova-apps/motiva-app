@@ -19,9 +19,24 @@ if (menuButton && mainNav) {
   });
 
   mainNav.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+
+  document.addEventListener('click', event => {
+    if (!mainNav.classList.contains('open')) return;
+    if (mainNav.contains(event.target) || menuButton.contains(event.target)) return;
+    closeMenu();
+  });
+
   document.addEventListener('keydown', event => {
     if (event.key === 'Escape') closeMenu();
   });
+
+  const responsiveMenuBreakpoint = window.matchMedia('(max-width: 900px)');
+  const resetMenuOnBreakpointChange = () => closeMenu();
+  if (responsiveMenuBreakpoint.addEventListener) {
+    responsiveMenuBreakpoint.addEventListener('change', resetMenuOnBreakpointChange);
+  } else {
+    responsiveMenuBreakpoint.addListener(resetMenuOnBreakpointChange);
+  }
 }
 
 const revealItems = document.querySelectorAll('.reveal');
@@ -239,15 +254,11 @@ renderQuoteList(quotes, 'Colección pública actual de Motiva');
     operatingSystem: 'Web',
     inLanguage: 'es-PE',
     applicationSuite: 'Neuronova Apps',
-    image: 'https://neuronova-apps.github.io/motiva-app/assets/social/motiva-social.png',
-    featureList: ['Frase del día','Veintidós frases en la demo','Diecinueve categorías','Dieciséis necesidades para explorar','Explorador de frases','Experiencia accesible y responsive'],
-    isPartOf: {'@id': 'https://neuronova-apps.github.io/#website'}
+    image: 'https://neuronova-apps.github.io/motiva-app/assets/social/motiva-social.png'
   };
-  if (!document.querySelector('script[data-neuronova-schema="true"]')) {
-    const schema = document.createElement('script');
-    schema.type = 'application/ld+json';
-    schema.dataset.neuronovaSchema = 'true';
-    schema.textContent = JSON.stringify(structuredData);
-    document.head.appendChild(schema);
-  }
+
+  const script = document.createElement('script');
+  script.type = 'application/ld+json';
+  script.textContent = JSON.stringify(structuredData);
+  document.head.appendChild(script);
 })();
